@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { computed, type CSSProperties } from 'vue'
 
+// mavon editor
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 const props = defineProps<{
   text: string
   style?: CSSProperties

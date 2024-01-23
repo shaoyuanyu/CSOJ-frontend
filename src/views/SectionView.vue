@@ -62,6 +62,4 @@ const state = toRefs({ selectedKey })
   <TrainSectionRank v-else-if="state.selectedKey.value === '2'" :data="data" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

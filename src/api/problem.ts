@@ -1,6 +1,7 @@
 import type { Problem } from '@/models/problem'
 import type { RespObj, RespStr } from '@/models/response'
 import $axios from '@/utils/axios'
+import type { ProblemDetail } from '@/models/problemDetail'
 
 /**
  * 新建题目
@@ -32,11 +33,10 @@ export function editProblem(problem: Problem) {
 /**
  * 查询
  *
- * path: /problem/{id}
+ * path: /problem/get/{id}
  */
-export function queryProblemVOById(id: string) {
-  //return $axios.get<RespObj<Problem>>('/problem/' + id)
-  return $axios.get<Problem>('/problem/getProblem/' + id)
+export function queryProblemDetailById(id: string) {
+  return $axios.get<ProblemDetail>('/problem/get/' + id)
 }
 
 // /**

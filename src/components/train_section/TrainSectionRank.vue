@@ -77,5 +77,4 @@ const rankData = ref([
   </a-table>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

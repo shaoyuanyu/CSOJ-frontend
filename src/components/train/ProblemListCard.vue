@@ -80,5 +80,4 @@ const handleRowClick = (record: any, ev: Event) => {
   </a-table>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

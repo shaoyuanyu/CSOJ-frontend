@@ -61,7 +61,7 @@ export const problem_routes: RouteRecordRaw[] = [
     meta: { title: '编辑题目' /*requiredAuth: AuthEnum.USER*/ },
     component: () => import('@/views/EmptyView.vue'),
     props: (route) => ({ type: 'edit', id: route.params.id })
-  },
+  }
 ]
 
 export const submission_routes: RouteRecordRaw[] = [

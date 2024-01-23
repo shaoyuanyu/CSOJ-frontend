@@ -9,10 +9,11 @@ import MarkdownViewer from '@/components/markdown/MarkdownViewer.vue'
 import SubmissionsPanel from '@/components/submission_record/SubmissionsPanel.vue'
 // store
 import { useLangStore } from '@/stores/lang'
+import type { ProblemDetail } from '@/models/problemDetail'
 
 // Props
 const props = defineProps<{
-  problem: Problem
+  problem: ProblemDetail
 }>()
 
 const langStore = useLangStore()
@@ -55,27 +56,27 @@ function getLevelTagColor(level: string): string {
 
 // 更新信息(由language或problem变更引起)
 function updateBasicInfo(): void {
-  let timeLimit = -1
-  let memoryLimit = -1
-  let matched = false
+  let timeLimit = props.problem.timeLimit
+  let memoryLimit = props.problem.memoryLimit
+  // let matched = false
 
-  props.problem.judgeConfig.forEach((judgeConfig) => {
-    if (judgeConfig.language == langStore.lang || (!matched && judgeConfig.language == 'Others')) {
-      matched = true
-      timeLimit = judgeConfig.timeLimit
-      memoryLimit = judgeConfig.memoryLimit
-      console.log('匹配到: ', judgeConfig.language)
-    }
-  })
+  // props.problem.judgeConfig.forEach((judgeConfig) => {
+  //   if (judgeConfig.language == langStore.lang || (!matched && judgeConfig.language == 'Others')) {
+  //     matched = true
+  //     timeLimit = judgeConfig.timeLimit
+  //     memoryLimit = judgeConfig.memoryLimit
+  //     console.log('匹配到: ', judgeConfig.language)
+  //   }
+  // })
 
   basicInfo.value[0].value = timeLimit + ' ms'
   basicInfo.value[1].value = memoryLimit + ' MB'
-  basicInfo.value[2].value = `${props.problem.submitCount}`
-  basicInfo.value[3].value = `${props.problem.acceptedCount}`
-  basicInfo.value[4].value =
-    props.problem.submitCount === 0
-      ? '暂无数据'
-      : `${((props.problem.acceptedCount / props.problem.submitCount) * 100).toFixed(1)} %`
+  // basicInfo.value[2].value = `${props.problem.submitCount}`
+  // basicInfo.value[3].value = `${props.problem.acceptedCount}`
+  // basicInfo.value[4].value =
+  //   props.problem.submitCount === 0
+  //     ? '暂无数据'
+  //     : `${((props.problem.acceptedCount / props.problem.submitCount) * 100).toFixed(1)} %`
 }
 
 watch(props, () => {
@@ -101,8 +102,8 @@ onMounted(() => {
       class="problem-page-header"
     >
       <template #subtitle>
-        <a-tag :color="getLevelTagColor(problem.difficultLevel)" bordered>
-          {{ problem.difficultLevel }}级
+        <a-tag :color="getLevelTagColor(problem.difficulty.toString())" bordered>
+          {{ problem.difficulty }}级
         </a-tag>
       </template>
 
@@ -130,7 +131,7 @@ onMounted(() => {
           <!-- <markdown-viewer :text="problem.content" /> -->
           <a-typography class="text-area">
             <a-typography-title :heading="5" bold> 题目描述 </a-typography-title>
-            <a-typography-paragraph v-for="(content, key) in problem.content" :key="key">
+            <a-typography-paragraph v-for="(content, key) in problem.problemDescription" :key="key">
               {{ content }}
             </a-typography-paragraph>
           </a-typography>
@@ -155,23 +156,24 @@ onMounted(() => {
 
           <!-- 样例/标签/参考答案 -->
           <a-collapse :bordered="false" :default-active-key="[]">
-            <a-collapse-item key="0" header="样例" disabled>
-              <a-space v-for="(example, key) in problem.exampleCases" :key="key">
-                <!-- 此处需要替换组件，markdown为临时使用 -->
-                <markdown-viewer :text="example.caseIn" />
-                <markdown-viewer :text="example.caseOut" />
-              </a-space>
+            <a-collapse-item key="0" header="样例">
+              <!--              <a-space v-for="(example, key) in problem.exampleCases" :key="key">-->
+              <!--                &lt;!&ndash; 此处需要替换组件，markdown为临时使用 &ndash;&gt;-->
+              <!--                <markdown-viewer :text="example.caseIn" />-->
+              <!--                <markdown-viewer :text="example.caseOut" />-->
+              <!--              </a-space>-->
+              <markdown-viewer :text="problem.examples" style="height: 80px" />
             </a-collapse-item>
 
-            <a-collapse-item key="1" header="题目标签" disabled>
-              <a-space>
-                <a-tag v-for="tag in problem.tags" :key="tag" color="arcoblue" size="large">
-                  {{ tag }}
-                </a-tag>
-              </a-space>
+            <a-collapse-item key="1" header="题目标签">
+              <!--              <a-space>-->
+              <!--                <a-tag v-for="tag in problem.tags" :key="tag" color="arcoblue" size="large">-->
+              <!--                  {{ tag }}-->
+              <!--                </a-tag>-->
+              <!--              </a-space>-->
             </a-collapse-item>
 
-            <a-collapse-item key="2" header="参考答案" disabled>
+            <a-collapse-item key="2" header="参考答案">
               <!--               <code-editor :code="problem.refAnswer" disabled /> -->
             </a-collapse-item>
           </a-collapse>
@@ -181,7 +183,11 @@ onMounted(() => {
       <a-tab-pane key="2" title="评论" disabled />
 
       <a-tab-pane key="3" title="提交记录">
-        <submissions-panel :problem-id="props.problem.id" style="margin: 16px" type="problem" />
+        <submissions-panel
+          :problem-id="props.problem.problemId"
+          style="margin: 16px"
+          type="problem"
+        />
       </a-tab-pane>
     </a-tabs>
   </div>

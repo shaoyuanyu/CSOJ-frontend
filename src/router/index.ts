@@ -1,6 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { AuthEnum } from '@/common/access/authEnum'
-import { error_routes, problem_routes, submission_routes, top_routes, train_routes } from '@/router/routes'
+import {
+  error_routes,
+  problem_routes,
+  submission_routes,
+  top_routes,
+  train_routes
+} from '@/router/routes'
 
 // 定义route meta
 declare module 'vue-router' {
@@ -26,12 +32,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/layouts/BasicLayout.vue'),
-      children: [
-        ...problem_routes,
-        ...submission_routes,
-        ...train_routes,
-        ...error_routes
-      ]
+      children: [...problem_routes, ...submission_routes, ...train_routes, ...error_routes]
     },
 
     // login route
@@ -39,7 +40,7 @@ const router = createRouter({
       path: '/login',
       meta: { title: '登录' },
       component: () => import('@/views/LoginView.vue')
-    },
+    }
   ]
 })
 

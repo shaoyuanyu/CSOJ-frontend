@@ -4,33 +4,36 @@ import { onMounted, ref } from 'vue'
 import ProblemDisplay from '@/components/problem/ProblemDisplay.vue'
 import ProblemHandle from '@/components/problem/ProblemHandle.vue'
 // api
-import { queryProblemVOById } from '@/api/problem'
+import { queryProblemDetailById } from '@/api/problem'
 // models
 import type { Problem } from '@/models/problem'
+import type { ProblemDetail } from '@/models/problemDetail'
 
 // Props
 const props = defineProps<{ id: string }>()
 
 const size = ref(0.5)
-const problem = ref<Problem>({
-  id: '',
-  creator: { id: '', username: '', avatarUrl: '', email: '', auth: -1 },
-  title: '',
-  content: [''],
-  remark: '',
-  tags: [''],
-  submitCount: 0,
-  acceptedCount: 0,
-  judgeConfig: [{ language: '', timeLimit: 0.0, memoryLimit: 0.0 }],
-  judgeCases: [{ caseIn: '', caseOut: '' }],
-  exampleCases: [{ caseIn: '', caseOut: '' }],
-  refAnswer: '',
-  createTime: '',
-
-  difficultLevel: '',
-  source: '',
+const problemDetail = ref<ProblemDetail>({
+  problemId: '',
+  author: '',
+  createdByUser: '',
+  dateCreated: '',
+  dateLastModified: '',
+  difficulty: 0,
+  examples: '',
+  hint: '',
   inputDescription: '',
-  outputDescription: ''
+  isRemoteJudge: false,
+  lastModifiedByUser: '',
+  memoryLimit: 0,
+  oiScore: 0,
+  outputDescription: '',
+  problemDescription: '',
+  problemSource: '',
+  problemType: 0,
+  stackLimit: 0,
+  timeLimit: 0,
+  title: ''
 })
 
 const moved = ref(0)
@@ -41,9 +44,9 @@ function spiltMoved(): void {
 }
 
 onMounted(() => {
-  queryProblemVOById(props.id).then((res) => {
-    problem.value = res.data
-    console.log(problem.value)
+  queryProblemDetailById(props.id).then((res) => {
+    problemDetail.value = res.data
+    // console.log(problemDetail.value)
   })
 })
 </script>
@@ -52,7 +55,7 @@ onMounted(() => {
   <div id="problem">
     <a-split v-model:size="size" :max="0.7" :min="0.3" class="box" @move-end="spiltMoved()">
       <template #first>
-        <ProblemDisplay :problem="problem" />
+        <ProblemDisplay :problem="problemDetail" />
       </template>
 
       <template #second>

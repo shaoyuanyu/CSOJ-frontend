@@ -29,7 +29,6 @@ const competitions = ref([
     visible: true
   }
 ])
-
 </script>
 
 <template>
@@ -46,6 +45,4 @@ const competitions = ref([
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

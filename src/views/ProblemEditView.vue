@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import EmptyView from '@/views/EmptyView.vue'
 </script>
 
@@ -7,6 +6,4 @@ import EmptyView from '@/views/EmptyView.vue'
   <empty-view />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
