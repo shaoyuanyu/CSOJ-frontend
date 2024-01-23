@@ -2,9 +2,10 @@
 // import { querySubmissionVOById } from '@/api/submission'
 import { AuthEnum } from '@/common/access/authEnum'
 import CaseJudgeResultCard from '@/components/judge/CaseJudgeResultCard.vue'
-//import CodeEditor from '@/components/CodeEditor.vue'
-import { langInfo, submissionStatusInfo } from '@/models/enumInfo'
+import { langInfo } from '@/common/language/langInfo'
+import { submissionStatusInfo } from '@/common/submission/submissionStatusInfo'
 import type { Submission } from '@/models/submission'
+//import CodeEditor from '@/components/CodeEditor.vue'
 import { useUserStore } from '@/stores/user'
 import { onMounted, ref } from 'vue'
 

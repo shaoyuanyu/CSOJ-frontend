@@ -1,7 +1,8 @@
 <!--suppress VueUnrecognizedSlot -->
 <script setup lang="ts">
 // import { queryRecordVOWithPagination } from '@/api/submission'
-import { langInfo, submissionStatusInfo } from '@/models/enumInfo'
+import { langInfo } from '@/common/language/langInfo'
+import { submissionStatusInfo } from '@/common/submission/submissionStatusInfo'
 import type { Submission, SubmissionQuery } from '@/models/submission'
 import { useUserStore } from '@/stores/user'
 import type { TableColumnData } from '@arco-design/web-vue'

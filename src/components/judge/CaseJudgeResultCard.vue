@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import CodeEditor from '@/components/CodeEditor.vue'
-import { judgeStatusInfo } from '@/models/enumInfo'
+import { judgeStatusInfo } from '@/common/judge/judgeStatusInfo'
 import type { CaseJudgeResult } from '@/models/submission'
 import { ref } from 'vue'
 
