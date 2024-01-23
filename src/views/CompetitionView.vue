@@ -66,6 +66,14 @@ const hasCompetitionEnded = (startTime: string, duration: number) => {
                 <img alt="avatar" src="../../public/material/Competition.jpg" />
               </a-avatar>
             </template>
+            <template #description>
+              <div>
+                <icon-calendar />
+                开始时间: {{competition.start_time}}&nbsp;&nbsp;&nbsp;&nbsp; <!--这里用来添加宽度 可删除-->
+                <icon-schedule />
+                持续时间: {{convertSecondsToHours(competition.duration)}}
+              </div>
+            </template>
           </a-list-item-meta>
           <template #extra>
             <a-tag v-if="hasCompetitionEnded(competition.start_time, competition.duration)" color="red">已结束</a-tag>
