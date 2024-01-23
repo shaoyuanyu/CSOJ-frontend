@@ -1,6 +1,6 @@
 # CSOJ-frontend (传是OJ)
 
-[![CSOJ-frontend CI](https://github.com/shaoyuanyu/CSOJ-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/shaoyuanyu/CSOJ-frontend/actions/workflows/node.js.yml)
+[![Build](https://github.com/shaoyuanyu/CSOJ-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/shaoyuanyu/CSOJ-frontend/actions/workflows/node.js.yml)
 
 OJ platform for Kunshan High School of Jiangsu Province
 
