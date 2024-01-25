@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import type { CompetitionDisplay } from '../../models/competition.d.ts'
+import type { CompetitionDisplay } from '@/models/competition.d.ts'
 const router = useRouter()
 
 const props = defineProps({
@@ -11,8 +11,8 @@ const props = defineProps({
 })
 
 const handleRowClick = () => {
-  const routePath = '/train/trainsection'
-  router.push({ path: routePath, query: { id: props.competition.title } })
+  const routePath = '/competition/competitionSection'
+  router.push({ path: routePath, query: { id: props.competition.id } })
 }
 
 const convertSecondsToHours = (seconds: number) => {

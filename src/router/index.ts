@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { AuthEnum } from '@/common/access/authEnum'
 import {
+  competition_routes,
   error_routes,
   problem_routes,
   submission_routes,
@@ -32,7 +33,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/layouts/BasicLayout.vue'),
-      children: [...problem_routes, ...submission_routes, ...train_routes, ...error_routes]
+      children: [...problem_routes, ...submission_routes, ...train_routes, ...competition_routes, ...error_routes]
     },
 
     // login route

@@ -77,7 +77,15 @@ export const train_routes: RouteRecordRaw[] = [
   {
     path: '/train/trainSection',
     meta: { title: '浏览训练' },
-    component: () => import('@/views/SectionView.vue')
+    component: () => import('@/views/TrainSectionView.vue')
+  }
+]
+
+export const competition_routes: RouteRecordRaw[] = [
+  {
+    path: '/competition/competitionSection',
+    meta: { title: '浏览比赛' },
+    component: () => import('@/views/CompetitionSectionView.vue')
   }
 ]
 

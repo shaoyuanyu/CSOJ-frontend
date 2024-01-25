@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import '@arco-design/web-vue/dist/arco.css'
 import { useRouter } from 'vue-router'
-import CompetitionCard from '../components/competition/CompetitionCard.vue'
+import CompetitionCard from '@/components/competition/CompetitionCard.vue'
 const router = useRouter()
 // 比赛需要的相关数据
 // id 主键
