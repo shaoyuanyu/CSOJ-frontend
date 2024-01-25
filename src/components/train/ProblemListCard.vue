@@ -48,7 +48,7 @@ const data = reactive([
 ])
 
 const handleRowClick = (record: any, ev: Event) => {
-  const routePath = '/train/trainsection'
+  const routePath = '/train/trainSection'
   router.push({ path: routePath, query: { id: record.id } })
 }
 </script>

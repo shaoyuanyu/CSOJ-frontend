@@ -3,12 +3,12 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-// const props = defineProps({
-//   data: {
-//     type: Object,
-//     required: true
-//   }
-// })
+const props = defineProps({
+  data: {
+    type: Object,
+    required: true
+  }
+})
 
 // 上方传入的data中包含主键ID
 // 可以通过主键向数据库索要相关数据
