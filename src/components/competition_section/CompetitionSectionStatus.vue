@@ -29,16 +29,12 @@ const problemData = ref([
   },
 ])
 
-const handleRowClick = (record: any) => {
-  router.push({ path: `/problem/${record.problemID}` })
-}
 </script>
 
 <template>
   <a-table
     :data="problemData"
-    @row-click="handleRowClick"
-    :style="{ marginTop: '5px', cursor: 'pointer' }"
+    :style="{ marginTop: '5px'}"
   >
     <template #columns>
       <a-table-column title="Run ID" data-index="runID" align="center"></a-table-column>

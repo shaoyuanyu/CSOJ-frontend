@@ -5,6 +5,10 @@ import CompetitionSectionHead from '@/components/competition_section/Competition
 import CompetitionSectionBrief from '@/components/competition_section/CompetitionSectionBrief.vue'
 import CompetitionSectionProblem from '@/components/competition_section/CompetitionSectionProblem.vue'
 import CompetitionSectionStatus from '@/components/competition_section/CompetitionSectionStatus.vue'
+import CompetitionSectionRank from '@/components/competition_section/CompetitionSectionRank.vue'
+import CompetitionSectionNotice from '@/components/competition_section/CompetitionSectionNotice.vue'
+import CompetitionSectionComments from '@/components/competition_section/CompetitionSectionComments.vue'
+import CompetitionSectionReAssessment from '@/components/competition_section/CompetitionSectionReAssessment.vue'
 const route = useRoute()
 const id = ref(route.query.id)
 
@@ -57,6 +61,10 @@ const state = toRefs({ selectedKey })
   <CompetitionSectionBrief v-if="state.selectedKey.value === '0'" :data="competition" />
   <CompetitionSectionProblem v-if="state.selectedKey.value === '1'" :data="competition" />
   <CompetitionSectionStatus v-if="state.selectedKey.value === '2'" :data="competition" />
+  <CompetitionSectionRank v-if="state.selectedKey.value === '3'" :data="competition" />
+  <CompetitionSectionNotice v-if="state.selectedKey.value === '4'" :data="competition" />
+  <CompetitionSectionComments v-if="state.selectedKey.value === '5'" :data="competition" />
+  <CompetitionSectionReAssessment v-if="state.selectedKey.value === '6'" :data="competition" />
 </template>
 
 <style scoped></style>
