@@ -32,6 +32,11 @@ export const top_routes: RouteRecordRaw[] = [
     component: () => import('@/views/EmptyView.vue')
   },
   {
+    path: '/discussion',
+    meta: { title: '讨论' },
+    component: () => import('@/views/DiscussionView.vue')
+  },
+  {
     path: '/problems/manage',
     meta: { title: '题目管理' /*requiredAuth: AuthEnum.USER*/ },
     component: () => import('@/views/ProblemManageView.vue')
