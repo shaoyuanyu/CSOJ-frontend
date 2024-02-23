@@ -77,16 +77,36 @@ const handleClick = () => {
 
 // 处理模态框的确认和取消事件
 const handleOk = () => {
+  // 找到 category 在 classificationData 中对应的 id
+  const categoryId = classificationData.value.find(item => item.name === category.value)?.id || 0
+
+  const newDiscussion = {
+    // 生成新的 id
+    // 这里需要看数据库是如何处理新的id的了
+    // 到时候再说
+    id: discussions.value.length + 1,
+    title: title.value,
+    description: description.value,
+    category_id: categoryId,
+    content: content.value
+  }
+
+  // 将新的讨论对象推入 discussions 数组
+  discussions.value.push(newDiscussion)
+
   visible.value = false
   title.value = ''
   description.value = ''
   category.value = ''
+  content.value = ''
 }
+
 const handleCancel = () => {
   visible.value = false
   title.value = ''
   description.value = ''
   category.value = ''
+  content.value = ''
 }
 </script>
 
@@ -114,18 +134,18 @@ const handleCancel = () => {
       </template>
       <div>
         <a-form-item label="标题" required>
-          <a-input v-model:value="title" placeholder="请输入标题" />
+          <a-input v-model="title" placeholder="请输入标题" />
         </a-form-item>
         <a-form-item label="描述" required>
-          <a-input v-model:value="description" placeholder="请输入描述" />
+          <a-input v-model="description" placeholder="请输入描述" />
         </a-form-item>
         <a-form-item label="分类" required>
-          <a-select v-model:value="category" placeholder="请选择...">
+          <a-select v-model="category" placeholder="请选择...">
             <a-option v-for="item in classificationData" :key="item.id" :value="item.name" :label="item.name" />
           </a-select>
         </a-form-item>
-        <a-form-item label="内容" required> <!-- 新增的内容 -->
-          <VMarkdownEditor v-model:value="content" locale="en" />
+        <a-form-item label="内容" required>
+          <VMarkdownEditor v-model="content" locale="en" class="large-editor" />
         </a-form-item>
       </div>
     </a-modal>
@@ -137,5 +157,10 @@ const handleCancel = () => {
 <style scoped>
 .shadow-button {
   box-shadow: 0px 3px 6px #00000029;
+}
+
+.large-editor {
+  height: 500px;
+  width: 100%;
 }
 </style>
