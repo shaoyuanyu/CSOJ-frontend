@@ -6,7 +6,8 @@ import {
   problem_routes,
   submission_routes,
   top_routes,
-  train_routes
+  train_routes,
+  discussion_routes
 } from '@/router/routes'
 
 // 定义route meta
@@ -33,7 +34,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/layouts/BasicLayout.vue'),
-      children: [...problem_routes, ...submission_routes, ...train_routes, ...competition_routes, ...error_routes]
+      children: [...problem_routes, ...submission_routes, ...train_routes, ...competition_routes, ...discussion_routes, ...error_routes]
     },
 
     // login route

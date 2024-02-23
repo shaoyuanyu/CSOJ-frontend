@@ -94,6 +94,14 @@ export const competition_routes: RouteRecordRaw[] = [
   }
 ]
 
+export const discussion_routes: RouteRecordRaw[] = [
+  {
+    path: '/discusssion/discussionDetail',
+    meta: { title: '讨论详情' },
+    component: () => import('@/views/DiscussionDetailView.vue'),
+  }
+]
+
 export const error_routes: RouteRecordRaw[] = [
   {
     path: '/404',
