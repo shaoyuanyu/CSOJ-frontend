@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, getCurrentInstance } from 'vue'
+import { Message } from '@arco-design/web-vue';
 import TopCard from "@/components/discussion/TopCard.vue"
 import DiscussionDisplayCard from "@/components/discussion/DiscussionDisplayCard.vue"
 import ClassificationCard from '@/components/discussion/ClassificationCard.vue';
@@ -75,15 +76,22 @@ const handleClick = () => {
   visible.value = true
 }
 
+// 在 setup 函数内部获取消息函数
+const $message = getCurrentInstance()?.appContext.config.globalProperties.$message
+
 // 处理模态框的确认和取消事件
 const handleOk = () => {
+  // 检查所有必填项是否已填写
+  if (!title.value || !description.value || !category.value || !content.value) {
+    // 如果有任何必填项未填写，显示错误消息
+    $message?.error('缺少必填项，发送失败')
+    return
+  }
+
   // 找到 category 在 classificationData 中对应的 id
   const categoryId = classificationData.value.find(item => item.name === category.value)?.id || 0
 
   const newDiscussion = {
-    // 生成新的 id
-    // 这里需要看数据库是如何处理新的id的了
-    // 到时候再说
     id: discussions.value.length + 1,
     title: title.value,
     description: description.value,
@@ -99,6 +107,9 @@ const handleOk = () => {
   description.value = ''
   category.value = ''
   content.value = ''
+
+  // 如果所有必填项都已填写，显示成功消息
+  $message?.success('讨论发送成功')
 }
 
 const handleCancel = () => {
