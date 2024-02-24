@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 
 const props = defineProps({
   data: {
@@ -10,8 +9,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :style="{ display: 'flex' }">
-    <a-card :style="{ width: '30%', marginTop: '5px' }">
+  <div class="container">
+    <a-card class="card-left">
       <div style="display: flex; justify-content: space-between; padding: 16px">
         <span style="text-align: left">训练编号</span>
         <span style="text-align: right">{{ props.data.id }}</span>
@@ -43,13 +42,37 @@ const props = defineProps({
       </div>
     </a-card>
 
-    <div :style="{ width: '5px' }"></div>
+    <div class="spacer"></div>
 
-    <a-card :style="{ width: '70%', marginTop: '5px' }">
+    <a-card class="card-right">
       <h3>训练简介</h3>
       <div>{{ props.data.brief }}</div>
     </a-card>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.card-left {
+  width: 30%;
+  margin-top: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.card-right {
+  width: 70%;
+  margin-top: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.spacer {
+  width: 5px;
+}
+</style>

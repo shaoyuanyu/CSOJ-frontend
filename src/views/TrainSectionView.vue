@@ -40,8 +40,8 @@ const state = toRefs({ selectedKey })
   <!-- 标题卡片，注意需要传入参数 -->
   <TrainSectionHead :data="data" />
 
-  <div :style="{ display: 'flex' }">
-    <a-card :style="{ width: '100%', marginTop: '5px' }">
+  <div class="card-container">
+    <a-card class="a-card">
       <div class="menu">
         <a-menu
           mode="horizontal"
@@ -62,4 +62,11 @@ const state = toRefs({ selectedKey })
   <TrainSectionRank v-else-if="state.selectedKey.value === '2'" :data="data" />
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-card {
+  width: 80%;
+  margin: 0 auto 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+</style>

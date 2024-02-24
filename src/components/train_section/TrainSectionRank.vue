@@ -64,7 +64,12 @@ const rankData = ref([
 </script>
 
 <template>
-  <a-table :data="rankData" :style="{ marginTop: '5px' }" :filter-icon-align-left="false">
+  <a-table
+  class="a-table"
+  :data="rankData"
+  :style="{ marginTop: '5px' }"
+  :filter-icon-align-left="false">
+
     <template #columns>
       <a-table-column
         align="center"
@@ -77,4 +82,11 @@ const rankData = ref([
   </a-table>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-table {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+</style>
