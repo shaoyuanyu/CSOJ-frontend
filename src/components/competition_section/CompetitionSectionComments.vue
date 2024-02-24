@@ -41,7 +41,7 @@ const comments = ref([
 </script>
 
 <template>
-    <a-card style="width: 100%; height: 100%; margin-top: 5px;">
+    <a-card class="a-card">
         <a-textarea placeholder="快来写下你的评论吧~" :auto-size="{minRows:5}" style="margin-bottom: 10px; margin-top: 10px;"/>
         <div style="display: flex; justify-content: space-between; margin-bottom: 20px; margin-top: 10px;">
             <a-rate/>
@@ -84,4 +84,11 @@ const comments = ref([
     </a-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-card {
+  width: 80%;
+  margin: 0px auto 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+</style>

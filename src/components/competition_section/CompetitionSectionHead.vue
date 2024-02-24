@@ -27,8 +27,8 @@ const hasCompetitionEnded = (startTime: string, duration: number) => {
 </script>
 
 <template>
-  <div :style="{ display: 'flex' }">
-    <a-card :style="{ width: '100%' }">
+  <div>
+    <a-card class="a-card">
       <h2 :style="{ textAlign: 'center' }">{{ props.data.title }}</h2>
       <div :style="{ display: 'flex', justifyContent: 'space-between' }">
         <div :style="{ fontSize: '16px' }"><icon-clock-circle /> 开始时间：{{ props.data.start_time }}</div>
@@ -43,4 +43,11 @@ const hasCompetitionEnded = (startTime: string, duration: number) => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-card {
+  width: 80%;
+  margin: 0px auto 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+</style>

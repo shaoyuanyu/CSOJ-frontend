@@ -27,13 +27,27 @@ const competitions = ref([
     start_time: '2024-01-7 08:3-:00',
     duration: 3600,
     visible: true
+  },
+  {
+    id: 1,
+    title: 'W-J(普及组)测试-3',
+    start_time: '2024-01-13 09:00:00',
+    duration: 3600,
+    visible: true
+  },
+  {
+    id: 2,
+    title: 'W-J(普及组)测试-2',
+    start_time: '2024-01-7 08:3-:00',
+    duration: 3600,
+    visible: true
   }
 ])
 </script>
 
 <template>
   <div>
-    <a-card title="全部比赛">
+    <a-card title="全部比赛" class="a-card">
       <a-list>
         <CompetitionCard
           v-for="competition in competitions"
@@ -45,4 +59,11 @@ const competitions = ref([
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-card {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>

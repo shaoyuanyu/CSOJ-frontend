@@ -51,6 +51,7 @@ const handleRowClick = (record: any) => {
 
 <template>
   <a-table
+    class="a-table"
     :data="problemData"
     @row-click="handleRowClick"
     :style="{ marginTop: '5px', cursor: 'pointer' }"
@@ -77,4 +78,11 @@ const handleRowClick = (record: any) => {
   </a-table>
 </template>
 
-<style scoped></style>
+<style scoped>
+.a-table {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+</style>
