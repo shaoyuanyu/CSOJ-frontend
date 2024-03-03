@@ -11,12 +11,18 @@ import SubmissionsPanel from '@/components/submission_record/SubmissionsPanel.vu
 import { useLangStore } from '@/stores/lang'
 import type { ProblemDetail } from '@/models/problemDetail'
 
+// vue3-markdown
+import { VMarkdownView } from 'vue3-markdown'
+
 // Props
 const props = defineProps<{
   problem: ProblemDetail
 }>()
 
 const langStore = useLangStore()
+
+const exampleContent = ref("### Test Example")
+const answerContent = ref("### Test Answer \n```c++\n#include <bits/stdc++.h>\nint main() {\n\treturn 0;\n}")
 
 const basicInfo = ref<DescData[]>([
   { label: '时间限制', value: '- ms' },
@@ -157,24 +163,21 @@ onMounted(() => {
           <!-- 样例/标签/参考答案 -->
           <a-collapse :bordered="false" :default-active-key="[]">
             <a-collapse-item key="0" header="样例">
-              <!--              <a-space v-for="(example, key) in problem.exampleCases" :key="key">-->
-              <!--                &lt;!&ndash; 此处需要替换组件，markdown为临时使用 &ndash;&gt;-->
-              <!--                <markdown-viewer :text="example.caseIn" />-->
-              <!--                <markdown-viewer :text="example.caseOut" />-->
-              <!--              </a-space>-->
-              <markdown-viewer :text="problem.examples" style="height: 80px" />
+              <VMarkdownView :content="exampleContent">
+              </VMarkdownView>
             </a-collapse-item>
 
             <a-collapse-item key="1" header="题目标签">
-              <!--              <a-space>-->
-              <!--                <a-tag v-for="tag in problem.tags" :key="tag" color="arcoblue" size="large">-->
-              <!--                  {{ tag }}-->
-              <!--                </a-tag>-->
-              <!--              </a-space>-->
+              <!-- <a-space>
+                  <a-tag v-for="tag in problem.tags" :key="tag" color="arcoblue" size="large">
+                    {{ tag }}
+                  </a-tag>
+              </a-space> -->
             </a-collapse-item>
 
             <a-collapse-item key="2" header="参考答案">
-              <!--               <code-editor :code="problem.refAnswer" disabled /> -->
+              <VMarkdownView :content="answerContent">
+              </VMarkdownView>
             </a-collapse-item>
           </a-collapse>
         </a-scrollbar>
