@@ -2,7 +2,7 @@
 import type { DescData } from '@arco-design/web-vue'
 // models
 import type { Problem } from '@/models/problem'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, getCurrentInstance } from 'vue'
 // components
 // import CodeEditor from '@/components/code_editor/CodeEditor.vue'
 import MarkdownViewer from '@/components/markdown/MarkdownViewer.vue'
@@ -12,7 +12,54 @@ import { useLangStore } from '@/stores/lang'
 import type { ProblemDetail } from '@/models/problemDetail'
 
 // vue3-markdown
-import { VMarkdownView } from 'vue3-markdown'
+import { VMarkdownView, VMarkdownEditor } from 'vue3-markdown'
+
+// comments
+import { Message } from '@arco-design/web-vue';
+import ProblemCommentCard from '@/components/problem/ProblemCommentCard.vue'
+const comments = ref([
+  { id: 1, title: '评论1', content: '评论1'},
+  { id: 2, title: '评论2', content: '评论1'},
+  // ...
+])
+
+// publish comment modal visible
+const visible = ref(false)
+
+// input
+const title = ref('')
+const content = ref('')
+
+const handleClick = () => {
+  visible.value = true
+}
+
+const $message = getCurrentInstance()?.appContext.config.globalProperties.$message
+
+const handleOk = () => {
+  if (!title.value || !content.value) {
+    $message?.error('缺少必填项，发送失败')
+    return
+  }
+
+  const newComment = {
+    id: comments.value.length + 1,
+    title: title.value,
+    content: content.value
+  }
+  comments.value.push(newComment)
+  visible.value = false
+  title.value = ''
+  content.value = ''
+
+  $message?.success('评论发送成功')
+}
+
+const handleCancel = () => {
+  visible.value = false
+  title.value = ''
+  content.value = ''
+}
 
 // Props
 const props = defineProps<{
@@ -183,7 +230,37 @@ onMounted(() => {
         </a-scrollbar>
       </a-tab-pane>
 
-      <a-tab-pane key="2" title="评论" disabled />
+      <a-tab-pane key="2" title="评论">
+        <a-button 
+          type="primary" 
+          size="large" 
+          shape="round" 
+          class="shadow-button" 
+          style="display: block; margin: 5px auto; width: 90%;" 
+          long
+          @click="handleClick"
+        >
+          发布一条评论
+        </a-button>
+        <a-modal v-model:visible="visible" @ok="handleOk" @cancel="handleCancel" fullscreen>
+          <template #title>
+            发布一条评论
+          </template>
+          <div>
+            <a-form-item label="标题" required>
+              <a-input v-model="title" placeholder="请输入标题" />
+            </a-form-item>
+            <a-form-item label="内容" required>
+              <VMarkdownEditor v-model="content" locale="en" class="large-editor" />
+            </a-form-item>
+          </div>
+        </a-modal>
+        <ProblemCommentCard v-for="comment in comments" 
+          :key="comment.id" 
+          :id="comment.id" 
+          :title="comment.title" 
+          :content="comment.content" />
+      </a-tab-pane>
 
       <a-tab-pane key="3" title="提交记录">
         <submissions-panel
